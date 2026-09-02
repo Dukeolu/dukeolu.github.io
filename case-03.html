@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case 03 — Finding where margin is quietly leaking</title>
+<meta name="description" content="The business is profitable overall, but budget-to-actual reviews keep coming in over on cost-to-serve in specific regions and categories — and until now, nobody had broken out where. Over the trailing">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="shell">
+    <a class="brand" href="index.html">Dukeolu Olu</a>
+    <div class="links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a class="cta" href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="shell">
+<div class="eyebrow">Case 03 &middot; Finance & Budgeting</div>
+<h1 style="font-size:clamp(26px,3.6vw,38px); margin-bottom:16px;">Finding where margin is quietly leaking</h1>
+<div class="chips" style="margin-bottom:8px;"><span class="chip">Excel</span><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Dashboard</span></div>
+<p class="lede" style="margin-top:18px;">The business is profitable overall, but budget-to-actual reviews keep coming in over on cost-to-serve in specific regions and categories — and until now, nobody had broken out where. Over the trailing 24 months, actual profit came in $332,657 below budget. Small relative to $35.5M in budgeted profit (-0.9%), but the finance team's instinct that “something's off in a couple of areas” turns out to be exactly right.</p>
+
+<div class="stat-row"><div class="stat"><div class="k">24mo variance</div><div class="v">-$332,657 (-0.9%)</div></div><div class="stat"><div class="k">Leak concentration</div><div class="v">84% in 4 of 24 combos</div></div><div class="stat"><div class="k">Excel workbook formulas</div><div class="v">6,517 (0 errors)</div></div><div class="stat"><div class="k">Recovered</div><div class="v">~$192K/year</div></div></div>
+
+<section>
+  <h2>Approach</h2>
+  <ol class="steps"><li>
+      <span class="step-num">01</span>
+      <p><b>Excel</b> — A live-formula workbook (6,517 formulas, zero errors on recalc): a three-part profit-variance bridge — volume, discount, COGS — computed per row and proven to sum exactly to the total variance, plus a conditional-formatting heatmap that makes the leak clusters visually obvious.</p>
+    </li><li>
+      <span class="step-num">02</span>
+      <p><b>SQL</b> — Rank all 24 region×category combos by total variance with window functions, including a running cumulative share of the total leak.</p>
+    </li><li>
+      <span class="step-num">03</span>
+      <p><b>Python</b> — Reproduce the same volume/discount/COGS decomposition (cross-checked to the dollar against the Excel bridge), then run the recommendation as a counterfactual: what comes back if the worst combos simply held budgeted rates?</p>
+    </li><li>
+      <span class="step-num">04</span>
+      <p><b>Dashboard</b> — Two separately-scaled charts — totals and effects — rather than one chart spanning $0–$37M that would hide the effects entirely.</p>
+    </li></ol>
+</section>
+
+<section>
+  <h2>Key finding</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">The shortfall is not a demand problem — the volume/revenue effect is actually slightly positive (+$38,622). It's almost entirely a discount and cost-discipline story: discount effect -$68,137, COGS effect -$303,142. And it's sharply concentrated: 4 of the 24 region×category combos account for 84% of the entire leak — Electronics Accessories in the West and Northeast (a ramping supplier cost overrun), and Outdoor & Sporting in the South and Midwest (discount creep in two competitive regions). The Electronics Accessories/West trend was still getting worse as of the most recent month in the data, not a one-month blip.</p></div>
+</section>
+
+<section>
+  <h2>Recommendation &amp; business impact</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Don't launch a network-wide cost-cutting initiative — that solves a problem four combos actually have. Fix the four: renegotiate or re-source the Electronics Accessories supply chain driving the cost overrun, and reinstate discount discipline in Outdoor & Sporting. Counterfactual profit if those four combos had held budgeted rates: $35,555,035 over 24 months — $384,278 recovered, or roughly $192,139/year annualized.</p></div>
+  <div class="pullquote"><b>The pitch in one line:</b> The business isn't leaking money everywhere — it's leaking from four specific taps, and turning those off recovers roughly $192K a year without touching anything that's actually working.</div>
+</section>
+
+<div class="btn-row">
+  <a class="btn primary" href="https://dukeolu.github.io/data-analytics-portfolio/case-03-finance-margin/dashboard/" target="_blank" rel="noopener">View live dashboard ↗</a>
+  <a class="btn" href="https://github.com/Dukeolu/data-analytics-portfolio/tree/main/case-03-finance-margin" target="_blank" rel="noopener">View code on GitHub ↗</a>
+  <a class="btn" href="index.html">← All case studies</a>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>&copy; Dukeolu Olu — Data Analytics Portfolio</span>
+    <span><a href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">Full code archive on GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case 01 — Cutting stockouts without carrying more inventory</title>
+<meta name="description" content="A mid-size distributor sets every SKU's reorder point the same way: a flat 3 weeks of average demand, regardless of how volatile that SKU's demand actually is or how long and unpredictable its supplie">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="shell">
+    <a class="brand" href="index.html">Dukeolu Olu</a>
+    <div class="links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a class="cta" href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="shell">
+<div class="eyebrow">Case 01 &middot; Operations & Supply Chain</div>
+<h1 style="font-size:clamp(26px,3.6vw,38px); margin-bottom:16px;">Cutting stockouts without carrying more inventory</h1>
+<div class="chips" style="margin-bottom:8px;"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Dashboard</span></div>
+<p class="lede" style="margin-top:18px;">A mid-size distributor sets every SKU's reorder point the same way: a flat 3 weeks of average demand, regardless of how volatile that SKU's demand actually is or how long and unpredictable its supplier's lead time is. The result is a network fill rate stuck at 85.8%, well below the 95%+ typically targeted for revenue-critical items — and nobody can say which SKUs are driving it or what it's costing the business, only that “we're stocking out too much.”</p>
+
+<div class="stat-row"><div class="stat"><div class="k">Overall fill rate</div><div class="v">85.8% → 98.9%</div></div><div class="stat"><div class="k">A-tier fill rate</div><div class="v">88.4% → 99.1%</div></div><div class="stat"><div class="k">Extra carrying cost</div><div class="v">$183K/yr</div></div><div class="stat"><div class="k">Net annual benefit</div><div class="v">~$1.72M</div></div></div>
+
+<section>
+  <h2>Approach</h2>
+  <ol class="steps"><li>
+      <span class="step-num">01</span>
+      <p><b>SQL</b> — Rank all 180 SKUs by trailing revenue into A/B/C tiers with window functions, then measure fill rate and stockout rate by tier.</p>
+    </li><li>
+      <span class="step-num">02</span>
+      <p><b>Python</b> — Compute a per-SKU safety stock and reorder point from each SKU's own demand volatility and its supplier's lead-time volatility — not a flat rule for everyone.</p>
+    </li><li>
+      <span class="step-num">03</span>
+      <p><b>Validate</b> — Re-run the recommended reorder points through the same two-year demand simulation to get an actual before/after, not a theoretical one.</p>
+    </li><li>
+      <span class="step-num">04</span>
+      <p><b>Dashboard</b> — The KPIs and charts a stakeholder would see in Power BI, built as a static, dependency-free HTML file.</p>
+    </li></ol>
+</section>
+
+<section>
+  <h2>Key finding</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">The SKUs most under-protected today cluster heavily in Electronics Accessories — the category with the longest, most variable supplier lead times, where the flat 3-week policy leaves reorder points 200–280% below what their own demand volatility calls for. The SKUs most over-protected sit in Office Supplies, where short, reliable domestic lead times mean the same flat policy runs 20–37% higher than necessary. A first pass targeting a single 95% service level everywhere was tried and rejected — it more than doubled network inventory investment, because the status quo turned out to be broadly under-protected rather than over-protected. The fix instead uses tier-differentiated service targets: protect the revenue-critical items tightly, accept more risk on the long tail.</p></div>
+</section>
+
+<section>
+  <h2>Recommendation &amp; business impact</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Reset reorder points per SKU using tier-differentiated safety stock, funded by simultaneously trimming the over-protected Office Supplies SKUs. That requires roughly $832K more in average inventory investment, at an incremental carrying cost of about $183K/year — but it recovers an estimated $1.90M/year in gross margin currently lost to stockouts on revenue-critical items.</p></div>
+  <div class="pullquote"><b>The pitch in one line:</b> This isn't a cost-cutting story, it's a “the current policy is quietly losing $2M/year in sales it could have made” story — and the fix pays for itself roughly 9x over.</div>
+</section>
+
+<div class="btn-row">
+  <a class="btn primary" href="https://dukeolu.github.io/data-analytics-portfolio/case-01-operations-supply-chain/dashboard/" target="_blank" rel="noopener">View live dashboard ↗</a>
+  <a class="btn" href="https://github.com/Dukeolu/data-analytics-portfolio/tree/main/case-01-operations-supply-chain" target="_blank" rel="noopener">View code on GitHub ↗</a>
+  <a class="btn" href="index.html">← All case studies</a>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>&copy; Dukeolu Olu — Data Analytics Portfolio</span>
+    <span><a href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">Full code archive on GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case 04 — Where the hiring funnel — and headcount — leaks</title>
+<meta name="description" content="Voluntary attrition has been running high enough that HR leadership wants to know two things: which departments are actually the problem, and whether the source of a hire has anything to do with how l">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="shell">
+    <a class="brand" href="index.html">Dukeolu Olu</a>
+    <div class="links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a class="cta" href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="shell">
+<div class="eyebrow">Case 04 &middot; HR & People Operations</div>
+<h1 style="font-size:clamp(26px,3.6vw,38px); margin-bottom:16px;">Where the hiring funnel — and headcount — leaks</h1>
+<div class="chips" style="margin-bottom:8px;"><span class="chip">Excel</span><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">Dashboard</span></div>
+<p class="lede" style="margin-top:18px;">Voluntary attrition has been running high enough that HR leadership wants to know two things: which departments are actually the problem, and whether the source of a hire has anything to do with how long they stay. Over the trailing period, 23.6% of the 1,230-employee cohort left voluntarily — the headline number everyone already has. The question this case answers is what's underneath it.</p>
+
+<div class="stat-row"><div class="stat"><div class="k">Overall attrition</div><div class="v">23.6%</div></div><div class="stat"><div class="k">Job Board early attrition</div><div class="v">21.3% vs. 6.8%</div></div><div class="stat"><div class="k">WH&Ops interview rate</div><div class="v">30% vs. 48%</div></div><div class="stat"><div class="k">Net annual savings</div><div class="v">~$202K</div></div></div>
+
+<section>
+  <h2>Approach</h2>
+  <ol class="steps"><li>
+      <span class="step-num">01</span>
+      <p><b>SQL</b> — Cut termination rate by tenure band and channel to show attrition isn't uniform over time; rank departments by termination rate alongside their average overtime and manager-span load.</p>
+    </li><li>
+      <span class="step-num">02</span>
+      <p><b>Python</b> — A logistic regression ranks what structurally predicts attrition — tenure itself is deliberately excluded, since a terminated employee's tenure is mechanically how long until they left, which would make the model tautological rather than predictive.</p>
+    </li><li>
+      <span class="step-num">03</span>
+      <p><b>Excel</b> — A live-formula workbook (645 formulas, zero errors): a monthly headcount roll-forward, the full recruiting funnel with a channel conversion-rate heatmap, and the early-attrition cost scenario.</p>
+    </li><li>
+      <span class="step-num">04</span>
+      <p><b>Dashboard</b> — A funnel-stage comparison chart isolating exactly where Warehouse & Ops' Job Board pipeline falls behind the network average.</p>
+    </li></ol>
+</section>
+
+<section>
+  <h2>Key finding</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Department-level attrition looks like it points one direction — Marketing (28.2%) and Warehouse & Ops (28.1%) both run highest — but only one has a structural explanation in this data: Warehouse & Ops carries the highest overtime load (14.0 hrs/mo vs. 5–6 across the rest of the business) and the widest average manager span. The channel finding is sharper: Job Board hires leave within their first 90 days at 21.3%, versus 6.8% for Employee Referral — more than 3x. Job Board is also Warehouse & Ops' dominant sourcing channel, and its pipeline there has a second, independent problem: screening throughput matches the network average, but conversion from screened to interviewed collapses to 30%, versus 48% network-wide — a pure bottleneck, not a candidate-quality issue.</p></div>
+</section>
+
+<section>
+  <h2>Recommendation &amp; business impact</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Two fixes, both traced to the same channel, neither requiring a network-wide policy change. Shift sourcing mix away from Job Board toward Employee Referral where volume allows — at Employee Referral's early-attrition rate, Job Board's 310 hires over 24 months would have produced roughly 45 fewer early departures. And clear the Warehouse & Ops screening backlog: at the network's normal Job Board conversion rate, the department should be producing materially more interviews than it is — about 34 missed interviews a year of otherwise-viable candidates.</p></div>
+  <div class="pullquote"><b>The pitch in one line:</b> The attrition problem isn't spread evenly across the business — it's concentrated in one hiring channel and one department's broken pipeline, and fixing those two things recovers roughly $200K a year.</div>
+</section>
+
+<div class="btn-row">
+  <a class="btn primary" href="https://dukeolu.github.io/data-analytics-portfolio/case-04-hr-attrition/dashboard/" target="_blank" rel="noopener">View live dashboard ↗</a>
+  <a class="btn" href="https://github.com/Dukeolu/data-analytics-portfolio/tree/main/case-04-hr-attrition" target="_blank" rel="noopener">View code on GitHub ↗</a>
+  <a class="btn" href="index.html">← All case studies</a>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>&copy; Dukeolu Olu — Data Analytics Portfolio</span>
+    <span><a href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">Full code archive on GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

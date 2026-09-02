@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case 02 — Finding the customers about to churn, and why</title>
+<meta name="description" content="A subscription business is losing customers steadily — 36.6% of the observed base has churned — but retention spend is either untargeted (contact everyone, most of whom were never leaving) or based on">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="shell">
+    <a class="brand" href="index.html">Dukeolu Olu</a>
+    <div class="links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a class="cta" href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="shell">
+<div class="eyebrow">Case 02 &middot; Sales & Customer Analytics</div>
+<h1 style="font-size:clamp(26px,3.6vw,38px); margin-bottom:16px;">Finding the customers about to churn, and why</h1>
+<div class="chips" style="margin-bottom:8px;"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">Dashboard</span></div>
+<p class="lede" style="margin-top:18px;">A subscription business is losing customers steadily — 36.6% of the observed base has churned — but retention spend is either untargeted (contact everyone, most of whom were never leaving) or based on a hunch (“it's probably the month-to-month customers”). Nobody has actually ranked which factors predict churn once you control for the others, or sized what a targeted campaign would be worth.</p>
+
+<div class="stat-row"><div class="stat"><div class="k">Overall churn rate</div><div class="v">36.6%</div></div><div class="stat"><div class="k">Model test AUC</div><div class="v">0.71</div></div><div class="stat"><div class="k">High-risk segment targeted</div><div class="v">761 customers</div></div><div class="stat"><div class="k">Net annual benefit</div><div class="v">~$55.1K (4.4x)</div></div></div>
+
+<section>
+  <h2>Approach</h2>
+  <ol class="steps"><li>
+      <span class="step-num">01</span>
+      <p><b>SQL</b> — Break churn rate and monthly recurring revenue at risk out by contract type, signup channel, and region; cross-tab contract type against support-ticket load to surface intersectional risk.</p>
+    </li><li>
+      <span class="step-num">02</span>
+      <p><b>Retention curves</b> — For each contract type, the share of the cohort still active at 1/3/6/12/18/24 months.</p>
+    </li><li>
+      <span class="step-num">03</span>
+      <p><b>Driver ranking</b> — A logistic regression (test AUC 0.71 on a held-out 25%) ranks what actually moves churn risk, holding the other factors constant — not just what correlates with it alone.</p>
+    </li><li>
+      <span class="step-num">04</span>
+      <p><b>Target the offer</b> — Every active customer gets a predicted churn probability; the riskiest 20% become the campaign's target list, sized against contact cost, save rate, and discount cost.</p>
+    </li></ol>
+</section>
+
+<section>
+  <h2>Key finding</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Contract type dominates everything else — two-year customers are dramatically stickier than month-to-month, and it's not close: 31% of month-to-month customers are still active at 24 months, versus 74% for one-year and ~93% for two-year. Engagement score is the next real driver; channel, region, and monthly charge are small enough to be noise. The one worth calling out specifically: support-ticket volume looks like a meaningful risk factor in the single-variable SQL breakdown, but once engagement score is in the multivariate model, its effect nearly disappears — tickets are a symptom of low engagement, not an independent cause.</p></div>
+</section>
+
+<section>
+  <h2>Recommendation &amp; business impact</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Don't contact all 3,801 active customers — target the 761 riskiest, concentrated in month-to-month contracts across every acquisition channel. Assuming a $12/customer outreach cost, a 28% campaign save rate, and a discount cost equivalent to ~0.6 months of their own charge per customer actually saved, expected revenue protected is $67,637/year against a campaign cost of $12,514/year.</p></div>
+  <div class="pullquote"><b>The pitch in one line:</b> Stop trying to save everyone — the model identifies the 20% of active customers actually worth the outreach budget, and the campaign pays for itself more than four times over.</div>
+</section>
+
+<div class="btn-row">
+  <a class="btn primary" href="https://dukeolu.github.io/data-analytics-portfolio/case-02-sales-churn/dashboard/" target="_blank" rel="noopener">View live dashboard ↗</a>
+  <a class="btn" href="https://github.com/Dukeolu/data-analytics-portfolio/tree/main/case-02-sales-churn" target="_blank" rel="noopener">View code on GitHub ↗</a>
+  <a class="btn" href="index.html">← All case studies</a>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>&copy; Dukeolu Olu — Data Analytics Portfolio</span>
+    <span><a href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">Full code archive on GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

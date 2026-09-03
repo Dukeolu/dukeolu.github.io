@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case 05 — Where would battery storage pay off?</title>
+<meta name="description" content="Meridian Renewables operates five renewable sites and has budget for one battery storage investment this year. Solar's own output is concentrated exactly when the wholesale market is most oversuppl">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="shell">
+    <a class="brand" href="index.html">Dukeolu Olu</a>
+    <div class="links">
+      <a href="index.html">Home</a><a href="index.html#data-analyst" class="active">Data Analyst</a><a href="index.html#business-analyst">Business Analyst</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a class="cta" href="https://github.com/Dukeolu/Analyst-Portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="shell">
+<div class="eyebrow">Case 05 &middot; Energy &amp; Investment Analytics</div>
+<h1 style="font-size:clamp(26px,3.6vw,38px); margin-bottom:16px;">Where would battery storage pay off?</h1>
+<div class="chips" style="margin-bottom:8px;"><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Forecasting</span><span class="chip">Dashboard</span></div>
+<p class="lede" style="margin-top:18px;">Meridian Renewables (simulated) operates five renewable sites — three solar, two onshore wind — and has budget for one behind-the-meter battery storage investment this year. Every site "could" host a battery; the decision the business actually needs to make is which site first, and whether the economics of the best candidate actually clear an investment hurdle.</p>
+
+<div class="stat-row"><div class="stat"><div class="k">Solar capture rate</div><div class="v">76.3%</div></div><div class="stat"><div class="k">Wind capture rate</div><div class="v">106-107%</div></div><div class="stat"><div class="k">Top-site battery uplift</div><div class="v">£216,474/yr</div></div><div class="stat"><div class="k">Recommended investment</div><div class="v">NPV £2.72M · 3.4-yr payback</div></div></div>
+
+<section>
+  <h2>Approach</h2>
+  <ol class="steps"><li>
+      <span class="step-num">01</span>
+      <p><b>SQL</b> — Capacity factor and "capture rate" by site (volume-weighted price received &divide; simple average market price), plus a query isolating the cannibalisation mechanism directly: average price by national-solar-output quintile.</p>
+    </li><li>
+      <span class="step-num">02</span>
+      <p><b>Python</b> — A battery arbitrage simulation per site: a co-located 10&nbsp;MW/20&nbsp;MWh battery time-shifts each site's own generation from its cheapest hours to its priciest hours daily, ranking all five sites by annual revenue uplift.</p>
+    </li><li>
+      <span class="step-num">03</span>
+      <p><b>Forecasting</b> — A seasonal-naive forecast of the monthly price spread validated against a second year of data (3.4% mean error), used to check the arbitrage opportunity is stable enough to underwrite a 15-year asset against.</p>
+    </li><li>
+      <span class="step-num">04</span>
+      <p><b>Investment modeling</b> — 15-year NPV/IRR/payback for the top- and bottom-ranked sites, stacking arbitrage revenue with a capacity-market payment, the way a real battery investment is actually underwritten.</p>
+    </li></ol>
+</section>
+
+<section>
+  <h2>Key finding</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">All three solar sites capture only 76.3% of the simple average market price for their output, while the two wind sites capture 106-107% — a ~31 percentage-point gap driven entirely by <i>when</i> each technology generates, not by how much. Every solar site generates at once, at midday, which is exactly what suppresses the price at that hour: average price falls from £35.2/MWh in the lowest quintile of national solar output to £16.0/MWh in the highest. And the sites earning the least per MWh gain the most from a battery — estimated annual arbitrage uplift ranges from £216,474/year at Solent Solar Park down to £146,451/year at Cambria Wind Farm, tracking capture-rate disadvantage rather than nameplate capacity.</p></div>
+</section>
+
+<section>
+  <h2>Recommendation &amp; business impact</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Fund the first battery at Solent Solar Park, not at the largest site by nameplate capacity — the arbitrage-value ranking should decide the order, not total generation volume. Pure wholesale arbitrage alone doesn't clear a normal investment hurdle at any site, but stacked with capacity-market revenue, Solent's case is clearly the strongest: NPV £2,720,122, IRR 28.5%, payback 3.4 years, versus NPV £2,182,925, IRR 24.7%, and a 3.9-year payback at the lowest-ranked site — a £537,197 NPV gap driven entirely by the arbitrage layer.</p></div>
+  <div class="pullquote"><b>The pitch in one line:</b> Battery storage is worth the most exactly where the market is paying renewable output the least — and that's a rankable, quantifiable question, not a guess.</div>
+</section>
+
+<div class="btn-row">
+  <a class="btn primary" href="https://dukeolu.github.io/Analyst-Portfolio/energy-battery-storage-investment/visuals/battery-value-exhibit.html" target="_blank" rel="noopener">View live dashboard ↗</a>
+  <a class="btn" href="https://github.com/Dukeolu/Analyst-Portfolio/tree/main/energy-battery-storage-investment" target="_blank" rel="noopener">View code on GitHub ↗</a>
+  <a class="btn" href="index.html#data-analyst">← All case studies</a>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>&copy; Dukeolu Olu — Data Analytics &amp; Business Analyst Portfolio</span>
+    <span><a href="https://github.com/Dukeolu/Analyst-Portfolio" target="_blank" rel="noopener">Full code archive on GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>

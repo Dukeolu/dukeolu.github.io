@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BA Case 04 — Automate or keep hiring? A business case for order entry</title>
+<meta name="description" content="A routine headcount request for two more data-entry clerks was never actually evaluated against the alternative — investing in OCR/RPA automation. This case builds the full business case: costs, a se">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="shell">
+    <a class="brand" href="index.html">Dukeolu Olu</a>
+    <div class="links">
+      <a href="index.html">Home</a><a href="index.html#data-analyst">Data Analyst</a><a href="index.html#business-analyst" class="active">Business Analyst</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      <a class="cta" href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</nav>
+<main>
+<div class="shell">
+<div class="eyebrow">BA Case 04 &middot; Business Case &amp; Cost-Benefit</div>
+<h1 style="font-size:clamp(26px,3.6vw,38px); margin-bottom:16px;">Automate or keep hiring? A business case for order entry</h1>
+<div class="chips" style="margin-bottom:8px;"><span class="chip">Business Case</span><span class="chip">NPV / Payback</span><span class="chip">Excel</span></div>
+<p class="lede" style="margin-top:18px;">A routine headcount request for two more data-entry clerks at Brightpath Distribution (simulated) was never actually evaluated against the alternative — investing in OCR/RPA automation for the highest-volume order types. The instinct is to compare sticker prices, hire vs. buy — but a real business case has to account for what each option actually does to error rates, not just headcount cost.</p>
+
+<div class="stat-row"><div class="stat"><div class="k">3-yr cost: Hire</div><div class="v">$1,592,000</div></div><div class="stat"><div class="k">3-yr cost: Automate</div><div class="v">$1,512,000</div></div><div class="stat"><div class="k">NPV @ 8%</div><div class="v">$165,288</div></div><div class="stat"><div class="k">Payback period</div><div class="v">1.62 years</div></div></div>
+
+<section>
+  <h2>Approach</h2>
+  <ol class="steps"><li>
+      <span class="step-num">01</span>
+      <p><b>Options framing</b> — Defined Option B (hire 3 processors) and Option C (automate the highest-volume order types) against a documented baseline, with a full assumptions sheet (16 inputs) so every downstream number traces back to a stated, defensible assumption.</p>
+    </li><li>
+      <span class="step-num">02</span>
+      <p><b>Cost modeling</b> — Built out 3-year fully loaded costs for each option: salary and overhead for hiring, license and implementation cost for automation.</p>
+    </li><li>
+      <span class="step-num">03</span>
+      <p><b>Second benefit lever</b> — Modeled order-error-cost avoidance as its own line, not folded into "efficiency," because the pure headcount-cost difference between the two options is only about 5% — too thin on its own to be a credible business case.</p>
+    </li><li>
+      <span class="step-num">04</span>
+      <p><b>NPV &amp; payback</b> — Discounted cash flows at 8% year by year (not the built-in NPV shortcut, so every intermediate value is auditable) to get a real payback period, not a back-of-envelope one.</p>
+    </li></ol>
+</section>
+
+<section>
+  <h2>Key finding</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">On raw 3-year cost alone, automation wins by only about 5% ($1,512,000 vs. $1,592,000) — a margin thin enough that a skeptical finance reviewer could reasonably call it a wash once implementation risk is factored in. What changes the picture is the error-cost line: automation is projected to avoid $130,725 in order-error costs over the period that the hiring option wouldn't touch, because the error rate on high-volume order types is largely a data-entry problem, not a headcount problem. Combined, that's a $210,725 net benefit for automation — a real case, not a coin flip.</p></div>
+</section>
+
+<section>
+  <h2>Recommendation &amp; business impact</h2>
+  <div class="panel"><p style="margin:0; color:var(--ink-soft); font-size:14.5px;">Recommend Option C (automate), on the combined case rather than headcount cost alone. NPV at an 8% discount rate is $165,288, with a payback period of 1.62 years — inside the horizon most capital committees will accept without extended debate. The business case document lays out both options honestly, including where automation's advantage is thin (raw cost) and where it's real (error avoidance), which is the difference between a business case that survives scrutiny and one that's a sales pitch.</p></div>
+  <div class="pullquote"><b>The pitch in one line:</b> The headcount math alone was nearly a tie — the case for automation only becomes clear once you count what it stops from going wrong, not just what it costs.</div>
+</section>
+
+<div class="btn-row">
+  <a class="btn primary" href="https://dukeolu.github.io/data-analytics-portfolio/business-analyst/case-04-business-case/exhibits/business-case-summary.html" target="_blank" rel="noopener">View business case exhibit ↗</a>
+  <a class="btn" href="https://github.com/Dukeolu/data-analytics-portfolio/tree/main/business-analyst/case-04-business-case" target="_blank" rel="noopener">View artifacts on GitHub ↗</a>
+  <a class="btn" href="index.html#business-analyst">← All case studies</a>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="shell">
+    <span>&copy; Dukeolu Olu — Data Analytics &amp; Business Analyst Portfolio</span>
+    <span><a href="https://github.com/Dukeolu/data-analytics-portfolio" target="_blank" rel="noopener">Full code archive on GitHub</a></span>
+  </div>
+</footer>
+</body>
+</html>
